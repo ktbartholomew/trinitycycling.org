@@ -1,13 +1,14 @@
 import React from "react"
 import { useStaticQuery, graphql } from "gatsby"
 import Logo from "../../images/trinity-cycling.svg"
+import Img from 'gatsby-image'
 
 const LandingBlock = () => {
   const data = useStaticQuery(graphql`
     query {
       cyclistsAlley: file(relativePath: { eq: "cyclists-alley.jpg" }) {
         childImageSharp {
-          fluid(maxWidth: 300) {
+          fluid(maxWidth: 1920) {
             ...GatsbyImageSharpFluid
           }
         }
@@ -17,10 +18,9 @@ const LandingBlock = () => {
 
   return (
     <div style={{ width: "100vw", height: "100vh" }}>
-      <img
-        src={data.cyclistsAlley.childImageSharp.fluid.src}
-        srcSet={data.cyclistsAlley.childImageSharp.fluid.srcSet}
-        sizes={data.cyclistsAlley.childImageSharp.fluid.sizes}
+      <Img
+        alt="cyclists racing along a narrow road in Belgium, as viewed from an adjacent alley"
+        fluid={data.cyclistsAlley.childImageSharp.fluid}
         style={{
           position: "absolute",
           top: "0",
